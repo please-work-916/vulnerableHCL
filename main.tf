@@ -37,6 +37,19 @@ resource "aws_security_group" "my-group" {
     }]
 }
 
+resource "aws_security_group" "my-group2" {
+    name        = "allow_tls"
+    description = "Allow TLS inbound traffic"
+    ingress = [
+    {
+      description      = "TLS from VPC"
+      from_port        = 22
+      to_port          = 22
+      protocol         = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }]
+}
+
 resource "aws_lb" "test" {
     name                        = "test-lb-tf"
     load_balancer_type          = "application"
