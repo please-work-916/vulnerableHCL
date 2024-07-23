@@ -24,50 +24,6 @@ resource "aws_instance" "app_server" {
   }
 }
 
-resource "aws_security_group" "my-group" {
-    name        = "allow_tls"
-    description = "Allow TLS inbound traffic"
-    ingress = [
-    {
-      description      = "TLS from VPC"
-      from_port        = 3389
-      to_port          = 3389
-      protocol         = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
-    }]
-}
-
-resource "aws_security_group" "my-group2" {
-    name        = "allow_tls"
-    description = "Allow TLS inbound traffic"
-    ingress = [
-    {
-      description      = "TLS from VPC"
-      from_port        = 3389
-      to_port          = 3389
-      protocol         = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
-    }]
-}
-
-
-resource "aws_security_group" "my-group-ssh" {
-    name        = "allow_tls"
-    description = "Allow TLS inbound traffic"
-    ingress = [
-    {
-      description      = "TLS from VPC"
-      from_port        = 22
-      to_port          = 22
-      protocol         = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
-    }]
-}
-
-resource "aws_network_interface_sg_attachment" "sg_attachment" {
-  security_group_id    = "${data.aws_security_group.my-group.id}"
-  network_interface_id = "${aws_instance.app_server.primary_network_interface_id}"
-}
 
 resource "aws_lb" "test" {
     name                        = "test-lb-tf"
