@@ -24,6 +24,13 @@ resource "aws_instance" "app_server" {
   }
 }
 
+data "aws_ebs_default_kms_key" "current" {}
+
+resource "aws_ebs_volume" "example" {
+    availability_zone = "us-west-2a"
+    kms_key_id = data.aws_ebs_default_kms_key.current.key_arn
+}
+
 resource "aws_security_group" "my-group" {
     name        = "allow_tls"
     description = "Allow TLS inbound traffic"
