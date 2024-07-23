@@ -37,6 +37,18 @@ resource "aws_security_group" "my-group" {
     }]
 }
 
+resource "aws_security_group" "my-group-ssh" {
+    name        = "allow_tls"
+    description = "Allow TLS inbound traffic"
+    ingress = [
+    {
+      description      = "TLS from VPC"
+      from_port        = 22
+      to_port          = 22
+      protocol         = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }]
+}
 
 resource "aws_network_interface_sg_attachment" "sg_attachment" {
   security_group_id    = "${data.aws_security_group.my-group.id}"
