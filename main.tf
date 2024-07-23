@@ -54,3 +54,10 @@ resource "aws_network_interface_sg_attachment" "sg_attachment" {
   security_group_id    = "${data.aws_security_group.my-group.id}"
   network_interface_id = "${aws_instance.app_server.primary_network_interface_id}"
 }
+
+resource "aws_lb" "test" {
+    name                        = "test-lb-tf"
+    load_balancer_type          = "application"
+    subnets                     = aws_subnet.public.*.id
+    drop_invalid_header_fields  = false
+}
