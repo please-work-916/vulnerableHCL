@@ -50,7 +50,7 @@ resource "aws_security_group" "my-group2" {
     }]
 }
 
-resource "aws_security_group" "my-group2" {
+resource "aws_security_group" "my-group3" {
     name        = "allow_tls"
     description = "Allow TLS inbound traffic"
     ingress = [
