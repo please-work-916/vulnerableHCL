@@ -30,8 +30,8 @@ resource "aws_security_group" "my-group" {
     ingress = [
     {
       description      = "TLS from VPC"
-      from_port        = 3389
-      to_port          = 3389
+      from_port        = 443
+      to_port          = 443
       protocol         = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
     }]
